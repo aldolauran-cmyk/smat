@@ -19,9 +19,9 @@ def crear_lectura(db: Session, lectura: schemas.LecturaCreate):
 def obtener_stats(db: Session):
     total_est = db.query(models.Estacion).count()
     total_lec = db.query(models.Lectura).count()
-    max_val = db.query(func.max(models.Lectura.valor)).scalar()
+    max_lec = db.query(func.max(models.Lectura.valor)).scalar()
     return {
         "total_estaciones": total_est,
         "total_lecturas": total_lec,
-        "valor_maximo": max_val or 0.0
+        "punto_critico_maximo": max_lec if max_lec else 0.0
     }

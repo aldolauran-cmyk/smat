@@ -1,20 +1,25 @@
 from pydantic import BaseModel
-from typing import List, Optional
 
-class EstacionCreate(BaseModel):
+class EstacionBase(BaseModel):
     nombre: str
     ubicacion: str
 
-class Estacion(EstacionCreate):
+class EstacionCreate(EstacionBase):
+    pass
+
+class Estacion(EstacionBase):
     id: int
     class Config:
         from_attributes = True
 
-class LecturaCreate(BaseModel):
+class LecturaBase(BaseModel):
     valor: float
     estacion_id: int
 
-class Lectura(LecturaCreate):
+class LecturaCreate(LecturaBase):
+    pass
+
+class Lectura(LecturaBase):
     id: int
     class Config:
         from_attributes = True
